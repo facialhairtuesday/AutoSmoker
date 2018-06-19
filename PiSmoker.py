@@ -1,16 +1,29 @@
+# RPi Smoker Controller #
+# FHT #
+# V1.0 #
+# 2018-06-19 #
+
+
+# Add home folder to system path
+# to include other downloaded modules
+# Change system path as required if modules
+# are in a different folder than Home
 import sys
 sys.path.insert(0,'/home/pi/')
 
+# Import Modules
 import Adafruit_DHT
 import I2C_LCD_driver as driver
 from time import *
 
+# Start LCD Code
 mylcd = driver.lcd()
 
+# Setup DHT22 Sensor
 sensor = Adafruit_DHT.DHT22
-
 pin = 4
 
+# Get Temp & Humidity values
 humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
 if humidity is not None and temperature is not None:
@@ -20,5 +33,6 @@ if humidity is not None and temperature is not None:
 else:
     print('Failed to get reading. Try again!')
 
+# Display Temp & Humidity vals on LCD screen
 mylcd.lcd_display_string("Temp: %dC" % temperature,1)
 mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
