@@ -1,3 +1,6 @@
+import sys
+print(sys.path)
+
 from Adafruit_Python_DHT import Adafruit_DHT
 #from .home.pi import I2C_LCD_driver as driver
 from time import *
