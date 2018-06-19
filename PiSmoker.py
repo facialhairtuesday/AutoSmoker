@@ -1,5 +1,5 @@
 import sys
-sys.path.insert('0,'/home/pi/')
+sys.path.insert(0,'/home/pi/')
 
 import Adafruit_DHT
 #from Adafruit_Python_DHT.Adafruit_DHT.common import Adafruit_DHT
