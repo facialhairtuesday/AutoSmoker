@@ -2,6 +2,7 @@ import sys
 sys.path.insert(0,'/home/pi/')
 
 import Adafruit_DHT
+import I2C_LCD_driver as driver
 #from Adafruit_Python_DHT.Adafruit_DHT.common import Adafruit_DHT
 #from .home.pi import I2C_LCD_driver as driver
 from time import *
