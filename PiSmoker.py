@@ -13,10 +13,10 @@ import sys
 sys.path.insert(0,'/home/pi/')
 
 # Import Modules
-import Adafruit_DHT
-import I2C_LCD_driver as driver
+import Adafruit_DHT # Adafruit Temp & Humidity Sensor --> Will change to probe for smoker
+import I2C_LCD_driver as driver # Drives 2x16 LCD display
 from time import *
-import MAX31865
+import MAX31865 # Allows for connecting RPi to PTDs
 
 # Start LCD Code
 mylcd = driver.lcd()
