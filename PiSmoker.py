@@ -20,8 +20,5 @@ if humidity is not None and temperature is not None:
 else:
     print('Failed to get reading. Try again!')
 
-#mylcd.lcd_display_string("Temp: %dC" % temperature,1)
-#mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
-
-mylcd.lcd_display_string("Does this print?",1)
-mylcd.lcd_display_string("yes!",2)
+mylcd.lcd_display_string("Temp: %dC" % temperature,1)
+mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
