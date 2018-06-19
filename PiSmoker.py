@@ -8,6 +8,7 @@
 # to include other downloaded modules
 # Change system path as required if modules
 # are in a different folder than Home
+# May need to add __init__.py file to folder
 import sys
 sys.path.insert(0,'/home/pi/')
 
@@ -15,6 +16,7 @@ sys.path.insert(0,'/home/pi/')
 import Adafruit_DHT
 import I2C_LCD_driver as driver
 from time import *
+import MAX31865
 
 # Start LCD Code
 mylcd = driver.lcd()
@@ -23,7 +25,7 @@ mylcd = driver.lcd()
 sensor = Adafruit_DHT.DHT22
 pin = 4
 
-# Get Temp & Humidity values
+# Get Temp & Humidity values (C & %)
 humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
 if humidity is not None and temperature is not None:
