@@ -39,4 +39,4 @@ else:
 mylcd.lcd_display_string("Temp: %dC" % temperature,1)
 mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
 
-max1 = RTD.max31865(8,9,10,11)
+#max = RTD.max31865(8,9,10,11)
