@@ -38,3 +38,5 @@ else:
 # Display Temp & Humidity vals on LCD screen
 mylcd.lcd_display_string("Temp: %dC" % temperature,1)
 mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
+
+max1 = max31865.max31865(8)
