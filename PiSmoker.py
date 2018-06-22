@@ -16,7 +16,7 @@ sys.path.insert(0,'/home/pi/')
 import Adafruit_DHT # Adafruit Temp & Humidity Sensor --> Will change to probe for smoker
 import I2C_LCD_driver as driver # Drives 2x16 LCD display
 from time import *
-import MAX31865 as RTD # Allows for connecting RPi to PTDs
+import MAX31865 # Allows for connecting RPi to PTDs
 
 # Start LCD Code
 mylcd = driver.lcd()
@@ -39,5 +39,5 @@ else:
 mylcd.lcd_display_string("Temp: %dC" % temperature,1)
 mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
 
-dir(RTD)
+max1 = MAX31865.max31865(8,9,10,11)
 #max = RTD.max31865(8,9,10,11)
