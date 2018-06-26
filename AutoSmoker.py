@@ -41,5 +41,5 @@ else:
 mylcd.lcd_display_string("Temp: %dC" % temperature,1)
 mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
 '''
-max = MAX31865.max31865()
+max = MAX31865.MAX31865()
 print(max)
