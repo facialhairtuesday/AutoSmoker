@@ -17,8 +17,9 @@ import Adafruit_DHT # Adafruit Temp & Humidity Sensor --> Will change to probe f
 import I2C_LCD_driver as driver # Drives 2x16 LCD display
 from time import *
 import MAX31865 # Allows for connecting RPi to PTDs
-import inspect
 
+
+'''
 # Start LCD Code
 mylcd = driver.lcd()
 
@@ -39,6 +40,6 @@ else:
 # Display Temp & Humidity vals on LCD screen
 mylcd.lcd_display_string("Temp: %dC" % temperature,1)
 mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
-
+'''
 max = MAX31865.max31865()
 print(max)
