@@ -10,13 +10,13 @@
 # are in a different folder than Home
 # May need to add __init__.py file to folder
 import sys
-sys.path.insert(0,'/home/pi/')
+#sys.path.insert(0,'/home/pi/')
 
 # Import Modules
 import Adafruit_DHT # Adafruit Temp & Humidity Sensor --> Will change to probe for smoker
 import I2C_LCD_driver as driver # Drives 2x16 LCD display
 from time import *
-from MAX31865 import * # Allows for connecting RPi to PTDs
+import MAX31865 # Allows for connecting RPi to PTDs
 
 
 '''
