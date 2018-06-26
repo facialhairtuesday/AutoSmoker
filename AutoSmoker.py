@@ -10,7 +10,7 @@
 # are in a different folder than Home
 # May need to add __init__.py file to folder
 import sys
-#sys.path.insert(0,'/home/pi/')
+sys.path.insert(0,'/home/pi/')
 
 # Import Modules
 import Adafruit_DHT # Adafruit Temp & Humidity Sensor --> Will change to probe for smoker
@@ -41,5 +41,4 @@ else:
 mylcd.lcd_display_string("Temp: %dC" % temperature,1)
 mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
 '''
-max = MAX31865.MAX31865(8,9,10,11)
-print(max)
+MAX31865.max31865()
