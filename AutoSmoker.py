@@ -33,6 +33,8 @@ while True:
 
     print('Pointy temperature is: {}'.format(round(pointyTemp,1)))
     print('Blunt temperature is: {}'.format(round(bluntTemp,1)))
+
+    time.sleep(1)
 '''
 # Start LCD Code
 mylcd = driver.lcd()
