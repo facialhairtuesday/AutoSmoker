@@ -4,24 +4,35 @@
 # 2018-06-19 #
 
 
-# Add home folder to system path
-# to include other downloaded modules
+# Add folders to system path to
+# include other downloaded modules
 # Change system path as required if modules
 # are in a different folder than Home
 # May need to add __init__.py file to folder
 import sys
 sys.path.insert(0,'/home/pi/')
-sys.path.insert(0,'/home/pi/MAX31865')
+#sys.path.insert(0,'/home/pi/MAX31865')
 
-print(sys.path)
-
-# Import Modules
-#import Adafruit_DHT # Adafruit Temp & Humidity Sensor --> Will change to probe for smoker
-import I2C_LCD_driver as driver # Drives 2x16 LCD display
+# Import Other Modules
 import time
+import I2C_LCD_driver as driver # Drives 2x16 LCD display
 from MAX31865 import max31865 # Allows for connecting RPi to PTDs
 
+csPin0 = 8 #CE0 Pin
+csPin1 = 7 #CE1 Pin
+misoPin = 9
+mosiPin = 10
+clkPin = 11
 
+while True:
+    # Get Temp from pointed tip PT100 probe
+    pointyTemp = max31865.max31865(csPin0, misoPin, mosiPin, clkPin).readTemp()
+
+    # Get Temp from blunt tip PT100 probe
+    bluntTemp = max31865.max31865(csPin1, misoPin, mosiPin, clkPin).readTemp()
+
+    print('Pointy temperature is: {}'.format(round(pointyTemp,1)))
+    print('Blunt temperature is: {}'.format(round(bluntTemp,1)))
 '''
 # Start LCD Code
 mylcd = driver.lcd()
