@@ -46,7 +46,7 @@ mylcd = driver.lcd()
 # Get Temp & Humidity values (C & %)
 #humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
-if pointyTemp not None and bluntTemp is not None:
+if pointyTemp is not None and bluntTemp is not None:
     print('Pointy Temp={0:0.1f}C Blunt Temp = {1:0.1f}%'.format(pointyTemp, bluntTemp))
     #print(round(temperature,2))
     #print(round(humidity,2))
