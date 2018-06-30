@@ -15,7 +15,7 @@ sys.path.insert(0,'/home/pi/')
 # Import Other Modules
 import time
 #import I2C_LCD_driver as driver # Drives 2x16 LCD display
-from I2C_LCD_driver import I2C_LCD_driver as driver
+from I2C_LCD_driver import I2C_LCD_driver
 from MAX31865 import max31865 # Allows for connecting RPi to PTDs
 
 csPin0 = 8 #CE0 Pin
@@ -35,7 +35,7 @@ while True:
     print('Blunt temperature is: {}'.format(round(bluntTemp,1)))
 
     # Start LCD Code
-    mylcd = driver.lcd()
+    mylcd = I2C_LCD_driver.lcd()
 
     if pointyTemp is not None and bluntTemp is not None:
         print('Pointy Temp={0:0.1f}C Blunt Temp = {1:0.1f}%'.format(pointyTemp, bluntTemp))
