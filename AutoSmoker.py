@@ -13,6 +13,8 @@ import sys
 sys.path.insert(0,'/home/pi/')
 sys.path.insert(0,'/home/pi/MAX31865')
 
+print(sys.path)
+
 # Import Modules
 #import Adafruit_DHT # Adafruit Temp & Humidity Sensor --> Will change to probe for smoker
 import I2C_LCD_driver as driver # Drives 2x16 LCD display
