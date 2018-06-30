@@ -11,11 +11,11 @@
 # May need to add __init__.py file to folder
 import sys
 sys.path.insert(0,'/home/pi/')
-#sys.path.insert(0,'/home/pi/MAX31865')
 
 # Import Other Modules
 import time
-import I2C_LCD_driver as driver # Drives 2x16 LCD display
+#import I2C_LCD_driver as driver # Drives 2x16 LCD display
+from I2C_LCD_driver import I2C_LCD_driver as driver
 from MAX31865 import max31865 # Allows for connecting RPi to PTDs
 
 csPin0 = 8 #CE0 Pin
@@ -37,13 +37,6 @@ while True:
     # Start LCD Code
     mylcd = driver.lcd()
 
-    # Setup DHT22 Sensor
-    #sensor = Adafruit_DHT.DHT22
-    #pin = 4
-
-    # Get Temp & Humidity values (C & %)
-    #humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
-
     if pointyTemp is not None and bluntTemp is not None:
         print('Pointy Temp={0:0.1f}C Blunt Temp = {1:0.1f}%'.format(pointyTemp, bluntTemp))
         #print(round(temperature,2))
@@ -52,10 +45,6 @@ while True:
         print('Failed to get reading. Try again!')
 
     # Display Temp & Humidity vals on LCD screen
-    mylcd.lcd_clear()
-
-    time.sleep(2)
-
     mylcd.lcd_display_string("Pointy: %0.1fC" % pointyTemp,1)
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
