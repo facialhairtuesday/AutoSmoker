@@ -35,25 +35,24 @@ while True:
     print('Blunt temperature is: {}'.format(round(bluntTemp,1)))
 
     time.sleep(1)
-'''
+
 # Start LCD Code
 mylcd = driver.lcd()
 
 # Setup DHT22 Sensor
-sensor = Adafruit_DHT.DHT22
-pin = 4
+#sensor = Adafruit_DHT.DHT22
+#pin = 4
 
 # Get Temp & Humidity values (C & %)
-humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
+#humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)
 
-if humidity is not None and temperature is not None:
-    print('Temp={0:0.1f}C Humidity = {1:0.1f}%'.format(temperature, humidity))
-    print(round(temperature,2))
-    print(round(humidity,2))
+if pointyTemp not None and bluntTemp is not None:
+    print('Pointy Temp={0:0.1f}C Blunt Temp = {1:0.1f}%'.format(pointyTemp, bluntTemp))
+    #print(round(temperature,2))
+    #print(round(humidity,2))
 else:
     print('Failed to get reading. Try again!')
 
 # Display Temp & Humidity vals on LCD screen
-mylcd.lcd_display_string("Temp: %dC" % temperature,1)
-mylcd.lcd_display_string("Humidity: %d%%" % humidity,2)
-'''
+mylcd.lcd_display_string("Temp: %dC" % round(pointyTemp,1),1)
+mylcd.lcd_display_string("Humidity: %d%%" % round(bluntTemp,1),2)
