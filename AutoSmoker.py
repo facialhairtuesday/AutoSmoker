@@ -45,6 +45,8 @@ try:
         # Display if button is pressed
         mylcd = I2C_LCD_driver.lcd()
 
+        LEDoff()
+
         if GPIO.input(nextPin) == False:
             LEDon()
             time.sleep(.5)
