@@ -14,17 +14,25 @@ sys.path.insert(0,'/home/pi/')
 
 # Import Other Modules
 import time
-#import I2C_LCD_driver as driver # Drives 2x16 LCD display
-from I2C_LCD_driver import I2C_LCD_driver
+from I2C_LCD_driver import I2C_LCD_driver # For 16x2 LCD Display
 from MAX31865 import max31865 # Allows for connecting RPi to PTDs
+import RPi.GPIO as GPIO
+
+# Pin Setups
+GPIO.setmode(GPIO.BCM)
 
 csPin0 = 8 #CE0 Pin
 csPin1 = 7 #CE1 Pin
 misoPin = 9
 mosiPin = 10
 clkPin = 11
+butPin = 26
+
+GPIO.setup(butPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
 
 while True:
+'''
     # Get Temp from pointed tip PT100 probe
     pointyTemp = max31865.max31865(csPin0, misoPin, mosiPin, clkPin).readTemp()
 
@@ -49,3 +57,16 @@ while True:
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
     time.sleep(5)
+'''
+    # Display if button is pressed
+    mylcd = I2C_LCD_driver.lcd()
+
+    input_state = GPIO.input(butPin)
+    if input_state == False:
+        mylcd.lcd_clear()
+        mylcd.lcd_display_string("The button is pressed!",1)
+        time.sleep(0.2)
+    else:
+        mylcd.lcd_clear()
+        mylcd.lcd_display_string("The button is not pressed!",2)
+
