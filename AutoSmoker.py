@@ -62,6 +62,8 @@ while True:
     mylcd = I2C_LCD_driver.lcd()
 
     input_state = GPIO.input(butPin)
+    input_count = 0
+    
     if input_state == False:
         mylcd.lcd_clear()
         mylcd.lcd_display_string("The button is pressed!",1)
