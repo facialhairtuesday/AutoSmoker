@@ -10,6 +10,8 @@
 ##
 ## Below MyMenu and MyMenu2 examples will result in same MENU !
 ##
+'''Test Code'''
+
 
 MyMenu = [
     [0, "Menu Top", 1],
