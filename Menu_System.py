@@ -180,7 +180,7 @@ if __name__ == "__main__":
 
     import os
 
-    m = menu(MyMenu2)
+    m = menu(MyMenu)
     action = ""
 
     while True:
