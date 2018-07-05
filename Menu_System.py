@@ -12,7 +12,7 @@
 ##
 '''Test Code'''
 
-
+'''
 MyMenu = [
     [0, "Menu Top", 1],
     [1, "Pompe", 2],
@@ -29,24 +29,32 @@ MyMenu = [
     [6, "Check", "exec wifi check"],
     [6, "Show", "exec wifi show"]
 ]
+'''
+MyMenu = [
+    # Top Header --> Level 0
+    [0, "AutoSmoker", 1], # Top Level Menu Title
 
-MyMenu2 = [
-    [0, "Menu Top 2", 1],
+    # Top Level Menu --> Level 1
+    [1, "Display Current Temps", 2], # Top level Menu, Choice 1.2
+    [1, "Smoker Temp Set", 3], # Top level Menu, Choice 1.3
+    [1, "Meat Alarm Temp", 4], # Top level Menu, Choice 1.4
+    [1, "Config", 5], # Top level menu, Choice 1.5
 
-    [1, "Pompe 2", 2],
-    [1, "Lampe 2", 3],
-    [1, "Config 2", 4],
 
-    [2, "Auto 2", "exec pompe auto 2"],
-    [2, "ON 2", "exec pompe on 2"],
-    [2, "OFF 2", "exec pompe OFF 2"],
+    # Sub-menu --> From Choice 2
+    [2, "Auto 2", "exec pompe auto 2"], #Sub-menu Choice 2.1
+    [2, "ON 2", "exec pompe on 2"], #Sub-menu, Choice 2.2
+    [2, "OFF 2", "exec pompe OFF 2"], #Sub-menu, Choice 2.3
 
-    [3, "ON 2", "exec Lampe ON 2"],
-    [3, "OFF 2", "exec Lampe OFF 2"],
+    # Sub-menu --> From Choice 3
+    [3, "ON 2", "exec Lampe ON 2"], #Sub-menu, Choice 3.1
+    [3, "OFF 2", "exec Lampe OFF 2"], #Sub-menu, Choice 3.2
 
-    [4, "IP 2", 5],
-    [4, "WIFI 2", 6],
+    # Sub-menu 1.3
+    [4, "IP 2", 5], #Sub-menu 1.3, Choice 1
+    [4, "WIFI 2", 6], #Sub-menu 1.3, Choice 2
 
+    # Sub-men 2
     [5, "SET 2", "exec IP Set 2"],
 
     [6, "Check 2", "exec wifi check 2"],

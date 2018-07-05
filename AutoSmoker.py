@@ -26,12 +26,43 @@ csPin1 = 7 #CE1 Pin
 misoPin = 9
 mosiPin = 10
 clkPin = 11
-butPin = 26
+nextPin = 26
+selectPin = 13
+LEDPin = 19
 
-GPIO.setup(butPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+GPIO.setup(nextPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(selectPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.setup(LEDPin, GPIO.OUT)
+
+def LEDon():
+    GPIO.output(LEDPin, True)
+
+def LEDoff():
+    GPIO.output(LEDPin, False)
+
+try:
+    while True:
+        # Display if button is pressed
+        mylcd = I2C_LCD_driver.lcd()
+
+        if GPIO.input(nextPin) == True:
+            LEDon()
+            time.sleep(.5)
+            LEDoff()
+        if GPIO.input(selectPin) == True:
+            LEDon()
+            time.sleep(1)
+            LEDoff()
+            time.sleep(1)
+            LEDon()
+            time.sleep(1)
+            LEDoff()
 
 
-while True:
+
+finally:
+    GPIO.cleanup()
+
     '''
     # Get Temp from pointed tip PT100 probe
     pointyTemp = max31865.max31865(csPin0, misoPin, mosiPin, clkPin).readTemp()
@@ -58,17 +89,3 @@ while True:
 
     time.sleep(5)
     '''
-    # Display if button is pressed
-    mylcd = I2C_LCD_driver.lcd()
-
-    input_state = GPIO.input(butPin)
-    input_count = 0
-    
-    if input_state == False:
-        mylcd.lcd_clear()
-        mylcd.lcd_display_string("The button is pressed!",1)
-        time.sleep(0.2)
-    else:
-        mylcd.lcd_clear()
-        mylcd.lcd_display_string("The button is not pressed!",2)
-
