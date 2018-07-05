@@ -32,7 +32,7 @@ GPIO.setup(butPin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 
 while True:
-'''
+    '''
     # Get Temp from pointed tip PT100 probe
     pointyTemp = max31865.max31865(csPin0, misoPin, mosiPin, clkPin).readTemp()
 
@@ -57,7 +57,7 @@ while True:
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
     time.sleep(5)
-'''
+    '''
     # Display if button is pressed
     mylcd = I2C_LCD_driver.lcd()
 
