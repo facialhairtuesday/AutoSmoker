@@ -80,4 +80,7 @@ while True:
     mylcd.lcd_display_string("Pointy: %0.1fC" % pointyTemp,1)
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
-    time.sleep(5)
+
+
+
+    time.sleep(TempInterval)
