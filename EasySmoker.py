@@ -51,16 +51,12 @@ while True:
     # Get Temp from blunt tip PT100 probe
     bluntTemp = max31865.max31865(csPin1, misoPin, mosiPin, clkPin).readTemp()
 
-    print('Pointy temperature is: {}'.format(round(pointyTemp,1)))
-    print('Blunt temperature is: {}'.format(round(bluntTemp,1)))
-
     # Start LCD Code
     mylcd = I2C_LCD_driver.lcd()
 
     if pointyTemp is not None and bluntTemp is not None:
-        print('Pointy Temp={0:0.1f}C Blunt Temp = {1:0.1f}%'.format(pointyTemp, bluntTemp))
-        #print(round(temperature,2))
-        #print(round(humidity,2))
+        print('Pointy temperature is: {}'.format(round(pointyTemp, 1)))
+        print('Blunt temperature is: {}'.format(round(bluntTemp, 1)))
     else:
         print('Failed to get reading. Try again!')
 
