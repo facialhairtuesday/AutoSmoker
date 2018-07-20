@@ -17,10 +17,10 @@ import time
 from I2C_LCD_driver import I2C_LCD_driver # For 16x2 LCD Display
 from MAX31865 import max31865 # Allows for connecting RPi to PTDs
 import RPi.GPIO as GPIO
+import PID as PID
 
 # Pin Setups
 GPIO.setmode(GPIO.BCM)
-
 csPin0 = 8 #CE0 Pin
 csPin1 = 7 #CE1 Pin
 misoPin = 9
@@ -40,32 +40,23 @@ def LEDon():
 def LEDoff():
     GPIO.output(LEDPin, False)
 
-try:
-    while True:
-        # Display if button is pressed
-        mylcd = I2C_LCD_driver.lcd()
+# Base Parameters
+TempInterval = 3 #Frequency to record temperatures, seconds
+PIDCycleTime = 5 #Frequency to update control loop, seconds
+u_min = 0.15 # Maintenance Level
+u_max = 1.0
+Parameters = {'mode': 'Off', 'target':225, 'PB': 60.0,\
+              'Ti': 180.0, 'Td': 45.0, 'CycleTime': 20, 'u': 0.15,\
+              'PMode': 2.0, 'program': False,\
+              'ProgramToggle': time.time()}  #60,180,45 held +- 5F
 
-        LEDoff()
-
-        if GPIO.input(nextPin) == False:
-            LEDon()
-            time.sleep(.5)
-            LEDoff()
-        if GPIO.input(selectPin) == False:
-            LEDon()
-            time.sleep(1)
-            LEDoff()
-            time.sleep(1)
-            LEDon()
-            time.sleep(1)
-            LEDoff()
+#Start controller
+Control = PID.PID(Parameters['PB'],Parameters['Ti'],Parameters['Td'])
+Control.setTarget(Parameters['target'])
 
 
 
-finally:
-    GPIO.cleanup()
-
-    '''
+while True:
     # Get Temp from pointed tip PT100 probe
     pointyTemp = max31865.max31865(csPin0, misoPin, mosiPin, clkPin).readTemp()
 
@@ -90,4 +81,3 @@ finally:
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
     time.sleep(5)
-    '''
