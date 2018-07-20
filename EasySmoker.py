@@ -43,18 +43,6 @@ def LEDoff():
 # Base Parameters
 TempInterval = 3 #Frequency to record temperatures, seconds
 PIDCycleTime = 5 #Frequency to update control loop, seconds
-u_min = 0.15 # Maintenance Level
-u_max = 1.0
-Parameters = {'mode': 'Off', 'target':225, 'PB': 60.0,\
-              'Ti': 180.0, 'Td': 45.0, 'CycleTime': 20, 'u': 0.15,\
-              'PMode': 2.0, 'program': False,\
-              'ProgramToggle': time.time()}  #60,180,45 held +- 5F
-
-#Start controller
-Control = PID.PID(Parameters['PB'],Parameters['Ti'],Parameters['Td'])
-Control.setTarget(Parameters['target'])
-
-
 
 while True:
     # Get Temp from pointed tip PT100 probe
