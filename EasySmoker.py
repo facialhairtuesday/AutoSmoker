@@ -17,6 +17,7 @@ import time
 from I2C_LCD_driver import I2C_LCD_driver # For 16x2 LCD Display
 from MAX31865 import max31865 # Allows for connecting RPi to PTDs
 import RPi.GPIO as GPIO
+import RPi.PWM as PWM
 import PID as PID
 
 # Pin Setups
@@ -30,21 +31,26 @@ nextPin = 26
 selectPin = 13
 LEDPin = 19
 
-GPIO.setup(nextPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-GPIO.setup(selectPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+#GPIO.setup(nextPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+#GPIO.setup(selectPin, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 GPIO.setup(LEDPin, GPIO.OUT)
 
+"""
 def LEDon():
     GPIO.output(LEDPin, True)
-
 def LEDoff():
     GPIO.output(LEDPin, False)
+"""
 
 # Base Parameters
 TempInterval = 3 #Frequency to record temperatures, seconds
-PIDCycleTime = 5 #Frequency to update control loop, seconds
-
+Kp = 0.75
+Ki = 0.01
+Kd = 0.001
+Channel = 1
 setTemp = 28.5 # Test set temperature, C
+min_duty_cycle = 0
+max_duty_cycle = 1
 
 while True:
     # Get Temp from pointed tip PT100 probe
