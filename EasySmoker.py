@@ -44,6 +44,8 @@ def LEDoff():
 TempInterval = 3 #Frequency to record temperatures, seconds
 PIDCycleTime = 5 #Frequency to update control loop, seconds
 
+setTemp = 28.5 # Test set temperature, C
+
 while True:
     # Get Temp from pointed tip PT100 probe
     pointyTemp = max31865.max31865(csPin0, misoPin, mosiPin, clkPin).readTemp()
@@ -63,6 +65,12 @@ while True:
     # Display Temp & Humidity vals on LCD screen
     mylcd.lcd_display_string("Pointy: %0.1fC" % pointyTemp,1)
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
+
+    # PID Control
+
+
+
+
 
 
 
