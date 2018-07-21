@@ -20,6 +20,7 @@ import RPi.GPIO as GPIO
 #import PID as PID
 
 # Pin Setups
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 csPin0 = 8 #CE0 Pin
 csPin1 = 7 #CE1 Pin
@@ -167,6 +168,8 @@ try:
     myPWM = GPIO.PWM(LEDPin, 100)
     myPWM.start(50)
     while True:
+        tempMeasure()
+        displayTemp()
         fanSpeed()
         sleep(2)
 except KeyboardInterrupt:
