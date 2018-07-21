@@ -47,10 +47,10 @@ def LEDoff():
 # Base Parameters
 TempInterval = 3 #Frequency to record temperatures, seconds
 setTemp = 29 # Test set temperature, C
-sum = 0
-pTemp = 15
+sum = 0.0
+pTemp = 15.0
 iTemp = 0.4
-fanSpeed = 100
+fanSpeed = 100.0
 
 class PID:
 
