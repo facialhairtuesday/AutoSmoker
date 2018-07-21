@@ -174,6 +174,6 @@ try:
         print(tempVals)
 #       displayTemp(pointyTemp, bluntTemp)
 #       fanSpeed(pointyTemp)
-        sleep(2)
+        time.sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
