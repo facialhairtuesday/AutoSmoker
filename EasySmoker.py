@@ -147,6 +147,8 @@ def displayTemp():
 
 def fanSpeed():
     global fanSpeed, sum
+    tempMeasure()
+    displayTemp()
     diff = pointyTemp - setTemp
     sum = sum + diff
     pDiff = diff * pTemp
@@ -168,8 +170,8 @@ try:
     myPWM = GPIO.PWM(LEDPin, 100)
     myPWM.start(50)
     while True:
-        tempMeasure()
-        displayTemp()
+#        tempMeasure()
+ #       displayTemp()
         fanSpeed()
         sleep(2)
 except KeyboardInterrupt:
