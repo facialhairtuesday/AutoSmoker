@@ -20,7 +20,7 @@ import RPi.GPIO as GPIO
 #import PID as PID
 
 # Pin Setups
-#GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BCM)
 csPin0 = 8 #CE0 Pin
 csPin1 = 7 #CE1 Pin
 misoPin = 9
@@ -164,7 +164,6 @@ def fanSpeed(pointyTemp, bluntTemp):
 
 try:
     GPIO.setwarnings(False)
-    GPIO.setmode(GPIO.BCM)
     myPWM = GPIO.PWM(LEDPin, 100)
     myPWM.start(50)
     while True:
