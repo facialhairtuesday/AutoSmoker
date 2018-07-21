@@ -17,7 +17,7 @@ import time
 from I2C_LCD_driver import I2C_LCD_driver # For 16x2 LCD Display
 from MAX31865 import max31865 # Allows for connecting RPi to PTDs
 import RPi.GPIO as GPIO
-import PID as PID
+#import PID as PID
 
 # Pin Setups
 GPIO.setmode(GPIO.BCM)
