@@ -131,7 +131,7 @@ def tempMeasure():
 
     return pointyTemp, bluntTemp
 
-def displayTemp(pointyTemp, bluntTemp):
+def displayTemp():
     # Start LCD Code
     mylcd = I2C_LCD_driver.lcd()
 
