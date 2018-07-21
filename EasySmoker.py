@@ -144,7 +144,7 @@ def displayTemp(pointyTemp, bluntTemp):
     mylcd.lcd_display_string("Pointy: %0.1fC" % pointyTemp,1)
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
-def fanSpeed(pointyTemp, bluntTemp):
+def fanSpeed():
     global fanSpeed, sum
     diff = pointyTemp - setTemp
     sum = sum + diff
