@@ -17,7 +17,6 @@ import time
 from I2C_LCD_driver import I2C_LCD_driver # For 16x2 LCD Display
 from MAX31865 import max31865 # Allows for connecting RPi to PTDs
 import RPi.GPIO as GPIO
-import RPi.PWM as PWM
 import PID as PID
 
 # Pin Setups
@@ -49,8 +48,7 @@ Ki = 0.01
 Kd = 0.001
 Channel = 1
 setTemp = 28.5 # Test set temperature, C
-min_duty_cycle = 0
-max_duty_cycle = 1
+
 
 while True:
     # Get Temp from pointed tip PT100 probe
@@ -72,13 +70,73 @@ while True:
     mylcd.lcd_display_string("Pointy: %0.1fC" % pointyTemp,1)
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
-    # PID Control
+    # PID controller based on proportional band in standard PID form https://en.wikipedia.org/wiki/PID_controller#Ideal_versus_standard_PID_form
+    # u = Kp (e(t)+ 1/Ti INT + Td de/dt)
+    # PB = Proportional Band
+    # Ti = Goal of eliminating in Ti seconds
+    # Td = Predicts error value at Td in seconds
 
+    class PID:
+        def __init__(self, PB, Ti, Td):
+            self.CalculateGains(PB, Ti, Td)
 
+            self.P = 0.0
+            self.I = 0.0
+            self.D = 0.0
+            self.u = 0.0
 
+            self.Derv = 0.0
+            self.Inter = 0.0
+            self.Inter_max = abs(0.5 / self.Ki)
 
+            self.Last = 150
 
+            self.setTarget(0.0)
 
+        def CalculateGains(self, PB, Ti, Td):
+            self.Kp = -1 / PB
+            self.Ki = self.Kp / Ti
+            self.Kd = self.Kp * Td
 
+        def update(self, Current):
+            # P term
+            error = Current - self.setPoint
+            self.P = self.Kp * error + 0.5
+
+            # I term
+            dT = time.time() - self.LastUpdate
+            self.Inter += error * dT
+            self.Inter = max(self.Inter, -self.Inter_max)
+            self.Inter = min(self.Inter, self.Inter_max)
+
+            self.I = self.Ki * self.Inter
+
+            # D term
+            self.Derv = (Current - self.Last) / dT
+            self.D = self.Kd * self.Derv
+
+            # PID
+            self.u = self.P + self.I + self.D
+
+            # Update for next cycle
+            self.error = error
+            self.Last = Current
+            self.LastUpdate = time.time()
+
+            return self.u
+
+        def setTarget(self, setPoint):
+            self.setPoint = setPoint
+            self.error = 0.0
+            self.Inter = 0.0
+            self.Derv = 0.0
+            self.LastUpdate = time.time()
+
+        def setGains(self, PB, Ti, Td):
+            self.CalculateGains(PB, Ti, Kd)
+            self.Inter_max = abs(0.5 / self.Ki)
+
+        def getK(self):
+            return self.Kp, self.Ki, self.Kd
 
     time.sleep(TempInterval)
