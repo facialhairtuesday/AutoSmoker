@@ -174,8 +174,9 @@ try:
         pointyTemp = tempVals[0]
         bluntTemp = tempVals[1]
         print(pointyTemp, bluntTemp)
-        displayTemp(pointyTemp, bluntTemp)
-        fanSpeed(pointyTemp, setTemp)
+        displayTemp(tempVals[0], tempVals[1])
+        #displayTemp(pointyTemp, bluntTemp)
+#        fanSpeed(pointyTemp, setTemp)
         time.sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
