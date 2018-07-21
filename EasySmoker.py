@@ -170,9 +170,10 @@ try:
     myPWM = GPIO.PWM(LEDPin, 100)
     myPWM.start(50)
     while True:
-       tempMeasure()
-       displayTemp(pointyTemp, bluntTemp)
-       fanSpeed(pointyTemp)
-       sleep(2)
+        tempVals = tempMeasure()
+        print(tempVals)
+#       displayTemp(pointyTemp, bluntTemp)
+#       fanSpeed(pointyTemp)
+        sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
