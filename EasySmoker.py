@@ -131,13 +131,13 @@ def tempMeasure():
 
     return pointyTemp, bluntTemp
 
-def displayTemp():
+def displayTemp(pTemp, bTemp):
     # Start LCD Code
     mylcd = I2C_LCD_driver.lcd()
 
-    if pointyTemp is not None and bluntTemp is not None:
-        print('Pointy temperature is: {}'.format(round(pointyTemp, 1)))
-        print('Blunt temperature is: {}'.format(round(bluntTemp, 1)))
+    if pTemp is not None and bTemp is not None:
+        print('Pointy temperature is: {}'.format(round(pTemp, 1)))
+        print('Blunt temperature is: {}'.format(round(bTemp, 1)))
     else:
         print('Failed to get reading. Try again!')
 
@@ -145,11 +145,11 @@ def displayTemp():
     mylcd.lcd_display_string("Pointy: %0.1fC" % pointyTemp,1)
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
-def fanSpeed():
+def fanSpeed(desiredTemp):
     global fanSpeed, sum
     tempMeasure()
     displayTemp()
-    diff = pointyTemp - setTemp
+    diff = desiredTemp - setTemp
     sum = sum + diff
     pDiff = diff * pTemp
     iDiff = sum * iTemp
@@ -170,9 +170,9 @@ try:
     myPWM = GPIO.PWM(LEDPin, 100)
     myPWM.start(50)
     while True:
-#        tempMeasure()
- #       displayTemp()
-        fanSpeed()
+       tempMeasure()
+       displayTemp(pointyTemp, bluntTemp)
+       fanSpeed(pointyTemp)
         sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
