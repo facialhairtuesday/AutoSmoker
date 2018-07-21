@@ -173,6 +173,7 @@ try:
         tempVals = tempMeasure()
         pointyTemp = tempVals[0]
         bluntTemp = tempVals[1]
+        print(pointyTemp, bluntTemp)
         displayTemp(pointyTemp, bluntTemp)
         fanSpeed(pointyTemp, setTemp)
         time.sleep(2)
