@@ -46,7 +46,7 @@ def LEDoff():
 
 # Base Parameters
 TempInterval = 3 #Frequency to record temperatures, seconds
-setTemp = 45 # Test set temperature, C
+setTemp = 29 # Test set temperature, C
 sum = 0
 pTemp = 15
 iTemp = 0.4
@@ -145,11 +145,11 @@ def displayTemp(pTemp, bTemp):
     mylcd.lcd_display_string("Pointy: %0.1fC" % pointyTemp,1)
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
-def fanSpeed(desiredTemp):
+def fanSpeed(currentTemp, desiredTemp):
     global fanSpeed, sum
     tempMeasure()
     displayTemp()
-    diff = desiredTemp - setTemp
+    diff = currentTemp - desiredTemp
     sum = sum + diff
     pDiff = diff * pTemp
     iDiff = sum * iTemp
@@ -174,7 +174,7 @@ try:
         pointyTemp = tempVals[0]
         bluntTemp = tempVals[1]
         displayTemp(pointyTemp, bluntTemp)
-        fanSpeed(pointyTemp)
+        fanSpeed(pointyTemp, setTemp)
         time.sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
