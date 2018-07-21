@@ -147,8 +147,6 @@ def displayTemp(pTemp, bTemp):
 
 def fanSpeed(currentTemp, desiredTemp):
     global fanSpeed, sum
-    tempMeasure()
-    displayTemp()
     diff = currentTemp - desiredTemp
     sum = sum + diff
     pDiff = diff * pTemp
@@ -174,8 +172,8 @@ try:
         pointyTemp = tempVals[0]
         bluntTemp = tempVals[1]
         print(pointyTemp, bluntTemp)
-        displayTemp(tempVals[0], tempVals[1])
-        fanSpeed(tempVals[0], tempVals[1])
+        displayTemp(pointyTemp, bluntTemp)
+        fanSpeed(pointyTemp, bluntTemp)
         time.sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
