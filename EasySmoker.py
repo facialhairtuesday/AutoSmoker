@@ -173,6 +173,6 @@ try:
        tempMeasure()
        displayTemp(pointyTemp, bluntTemp)
        fanSpeed(pointyTemp)
-        sleep(2)
+       sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
