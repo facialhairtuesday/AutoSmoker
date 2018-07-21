@@ -171,10 +171,10 @@ try:
     myPWM.start(50)
     while True:
         tempVals = tempMeasure()
-        print(round(tempVals[0],1))
-        print(round(tempVals[1],1))
-#        displayTemp(pointyTemp, bluntTemp)
-#       fanSpeed(pointyTemp)
+        pointyTemp = tempVals[0]
+        bluntTemp = tempVals[1]
+        displayTemp(pointyTemp, bluntTemp)
+        fanSpeed(pointyTemp)
         time.sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
