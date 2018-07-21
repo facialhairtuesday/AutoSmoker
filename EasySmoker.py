@@ -145,8 +145,8 @@ def displayTemp(pTemp, bTemp):
     mylcd.lcd_display_string("Pointy: %0.1fC" % pointyTemp,1)
     mylcd.lcd_display_string("Blunt: %0.1fC" % bluntTemp,2)
 
-def fanSpeed(currentTemp, desiredTemp):
-    global fanSpeed, sum
+def fanSpeed(currentTemp, desiredTemp, fanSpeed, sum):
+    global(fanspeed, sum)
     diff = currentTemp - desiredTemp
     sum = sum + diff
     pDiff = diff * pTemp
@@ -169,8 +169,8 @@ try:
     myPWM.start(50)
     while True:
         tempVals = tempMeasure()
-        pointyTemp = tempVals[0]
-        bluntTemp = tempVals[1]
+        pointyTemp = round(tempVals[0],1)
+        bluntTemp = round(tempVals[1],1)
         print(pointyTemp, bluntTemp)
         displayTemp(pointyTemp, bluntTemp)
         fanSpeed(pointyTemp, bluntTemp)
