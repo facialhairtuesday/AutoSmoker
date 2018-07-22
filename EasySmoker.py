@@ -171,8 +171,8 @@ try:
         tempVals = tempMeasure()
         pointyTemp = round(tempVals[0],1)
         bluntTemp = round(tempVals[1],1)
-#        displayTemp(pointyTemp, bluntTemp)
-        fanSpeed(pointyTemp, bluntTemp)
+        displayTemp(pointyTemp, bluntTemp)
+        fanSpeed(pointyTemp, setTemp)
         time.sleep(2)
 except KeyboardInterrupt:
     GPIO.cleanup()
