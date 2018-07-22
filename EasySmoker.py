@@ -160,13 +160,13 @@ def fanSpeed(currentTemp, desiredTemp):
 
 
     if fanSpeed > 100:
-        fanspeed = 100
-    if fanSpeed < 15:
-        fanspeed = 0
+        fanSpeed = 100
+    elif fanSpeed < 15:
+        fanSpeed = 0
     print('fanSpeed is: {}'.format(fanSpeed))
     if sum > 100:
         sum = 100
-    if sum < -100:
+    elif sum < -100:
         sum = -100
     print('Sum is: {}'.format(sum))
 
