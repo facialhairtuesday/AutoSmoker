@@ -168,7 +168,7 @@ def fanSpeed(currentTemp, desiredTemp):
         sum = 100
     elif sum < -100:
         sum = -100
-    myPWM.ChangeDutyCycle(fanspeed)
+    myPWM.ChangeDutyCycle(fanSpeed)
     return()
 
 try:
