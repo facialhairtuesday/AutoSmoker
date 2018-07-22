@@ -152,6 +152,13 @@ def fanSpeed(currentTemp, desiredTemp):
     pDiff = diff * pTemp
     iDiff = sum * iTemp
     fanSpeed = pDiff + iDiff
+
+    print('Error is: {}'.format(diff))
+    print('Sum is: {}'.format(sum))
+    print('pDiff is: {}'.format(pDiff))
+    print('iDiff is: {}'.format(iDiff))
+    print('fanSpeed is: {}'.format(fanSpeed))
+
     if fanSpeed > 100:
         fanspeed = 100
     elif fanSpeed < 15:
