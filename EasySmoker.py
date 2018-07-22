@@ -166,13 +166,12 @@ def fanSpeed(currentTemp, desiredTemp):
 try:
     GPIO.setwarnings(False)
     myPWM = GPIO.PWM(LEDPin, 100)
-    myPWM.start(50)
+    myPWM.start(0)
     while True:
         tempVals = tempMeasure()
         pointyTemp = round(tempVals[0],1)
         bluntTemp = round(tempVals[1],1)
-        print(pointyTemp, bluntTemp)
-        displayTemp(pointyTemp, bluntTemp)
+#        displayTemp(pointyTemp, bluntTemp)
         fanSpeed(pointyTemp, bluntTemp)
         time.sleep(2)
 except KeyboardInterrupt:
