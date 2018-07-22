@@ -183,6 +183,6 @@ try:
         bluntTemp = round(tempVals[1],1)
         displayTemp(pointyTemp, bluntTemp)
         fanSpeed(pointyTemp, setTemp)
-        time.sleep(2)
+        time.sleep(0.25)
 except KeyboardInterrupt:
     GPIO.cleanup()
