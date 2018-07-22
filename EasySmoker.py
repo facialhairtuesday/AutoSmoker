@@ -147,7 +147,8 @@ def displayTemp(pTemp, bTemp):
 
 def fanSpeed(currentTemp, desiredTemp):
     global fanspeed, sum
-    diff = currentTemp - desiredTemp
+    diff = desiredTemp - currentTemp
+#    diff = currentTemp - desiredTemp
     sum = sum + diff
     pDiff = diff * pTemp
     iDiff = sum * iTemp
